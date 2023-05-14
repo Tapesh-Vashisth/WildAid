@@ -126,7 +126,7 @@ function Navbar() {
               >
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center" sx = {{color: "black"}}>{page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -145,7 +145,7 @@ function Navbar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.05rem',
-                color: 'inherit',
+                color: "black",
                 textDecoration: 'none',
               }}
             >
@@ -156,7 +156,7 @@ function Navbar() {
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'black', display: 'block' }}
                 >
                   {page}
                 </Button>
@@ -203,7 +203,7 @@ function Navbar() {
               </Box>
               :
               <MenuItem onClick={() => {navigate("/auth/login")}}>
-                <Typography textAlign="center" color="white">Login</Typography>
+                <Typography textAlign="center" color="black">Login</Typography>
               </MenuItem>
             }
           </Toolbar>
