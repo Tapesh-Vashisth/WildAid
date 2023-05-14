@@ -9,7 +9,7 @@ const AuthProtected = () => {
     const user = useAppSelector((state) => state.user);
 
     return (
-        !user.loggedIn ?
+        user.loggedIn !== true ?
                 <Outlet />
             :
             user.loading ?
@@ -18,7 +18,7 @@ const AuthProtected = () => {
             user.error ?
                 <Navigate to = "/" state={{from: location}} replace />
             :
-                <Outlet />
+                <Navigate to = "/" state={{from: location}} replace />    
         )
 }
 
