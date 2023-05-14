@@ -44,7 +44,7 @@ const Blogs = () => {
   return (
     <>
     {isLoading ?
-        <div className={styles.main}>
+        <div className={styles.load}>
             <CircularProgress color="secondary" />
         </div>
     :

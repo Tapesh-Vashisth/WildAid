@@ -90,7 +90,7 @@ const CreateBlog = () => {
               onChange={handleImage}
             ></input>
           </Stack>
-          <Button variant="outlined" color="secondary" type="submit">
+          <Button variant="outlined" color="secondary" type="submit" style={{ width: "50%", alignSelf: "center", border: "2px solid black", color: "black" }}>
             Create Blog
           </Button>
         </Stack>

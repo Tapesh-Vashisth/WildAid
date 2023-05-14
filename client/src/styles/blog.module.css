@@ -16,8 +16,21 @@ body {
   grid-column: 2 / 5;
 }
 
+.main {
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .heading {
   font-family: Montserrat, sans-serif;
+}
+
+.subheading {
+    margin: 4px;
 }
 
 .header .subheading {

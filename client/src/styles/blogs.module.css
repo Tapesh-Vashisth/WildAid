@@ -11,6 +11,15 @@
   --width: 22em;
 }
 
+.load {
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .main {
     display: grid;
     justify-content: center;

@@ -51,6 +51,7 @@ const Blog = () => {
     setLoading(true);
     const res = await axiosInstance.get("/blog/getblog/" + id);
     setBlog(res.data);
+    if (res.data===null) navigate('/404')
     setLoading(false);
   };
 
@@ -78,7 +79,7 @@ const Blog = () => {
           <main className={styles.container}>
             <header className={styles.header}>
               <p className={styles.subheading}>by - {blog.author}</p>
-              <p className={styles.subheading}> {new Date(blog.date).toISOString()} </p>
+              <p className={styles.subheading}> {new Date(blog.date).toUTCString()} </p>
               <h1 className={styles.heading}> {blog.title} </h1>
             </header>
             <section className={styles.content}>
@@ -87,7 +88,7 @@ const Blog = () => {
                 alt="large-image"
                 className={styles.poster_image}
               />
-              <p>
+              <p style={{ marginTop: "30px" }}>
                {blog.content}
                {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque ipsa enim, maxime dolorum, eum, incidunt a libero cupiditate nemo esse beatae officiis. Aspernatur, corrupti ipsa quam assumenda at minus asperiores facere culpa numquam. Quod dicta iure aliquam quas, aspernatur quae! Distinctio sapiente consequatur sequi? Assumenda dolor soluta veritatis sapiente, molestiae veniam quaerat nihil praesentium consequuntur. Praesentium et eos, quidem nobis quo alias cum expedita aliquam quaerat itaque ea, libero architecto culpa ex doloribus! Sit recusandae laborum numquam placeat quod quaerat voluptatibus accusamus, labore consequatur ipsum reprehenderit quas eligendi, maxime, eos cupiditate harum modi doloribus architecto enim assumenda eveniet! Dolorum a nihil facere velit magni laboriosam atque voluptatum error ad porro numquam ipsum, corporis in molestiae omnis amet nisi ipsa? */}
               </p>
@@ -110,26 +111,7 @@ const Blog = () => {
                 </a>
                 )
               })}
-              {/* <div className={styles.card}>
-                    <img
-                    src="/images/dog_pet.jpg"
-                    alt=""
-                    />
-                    <div>
-                    <p className={`${styles.heading} ${styles.title}`}>Dogs</p>
-                    <p className={styles.author}>by Tapesh</p>
-                    </div>
-                </div> */}
             </aside>
-            {/* <footer className={styles.footer}>
-              <a
-                href="https://twitter.com/agneymenon"
-                target="_blank"
-                className={styles.name_link}
-              >
-                Boy with Silver Wings
-              </a>
-            </footer> */}
           </main>
         </>
       )}
