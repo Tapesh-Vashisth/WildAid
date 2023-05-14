@@ -7,6 +7,7 @@ import signup from "../controllers/auth/signup"
 import verifyJWT from "../middleware/verifyJWT"
 import sendResetPasswordOtp from '../controllers/auth/sendResetPasswordOtp'
 import resetPassword from '../controllers/auth/resetPassword'
+import check from "../controllers/auth/check";
 
 const router = express.Router();
 
@@ -15,10 +16,11 @@ router.post('/login', login)
 router.post('/passwordotp', sendResetPasswordOtp)
 router.post('/sendotp', sendVerifyEmailOtp)
 router.post('/resetpassword', resetPassword)
-router.get('/refreshToken', refreshToken);
+router.get('/refreshToken', refreshToken)
 
 router.use(verifyJWT)
 
+router.get('/check', check);
 router.get('/logout', logout);
 
 export default router;

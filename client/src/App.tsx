@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LazyLoading from './components/LazyLoading';
 import Protected from './components/Protected';
+import AuthProtected from './components/AuthProtected';
 import { fetch } from './features/user/userSlice';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import NavFootLayout from './components/NavFootLayout';
@@ -25,23 +26,15 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path = "/" element = {<Protected />} >
+        <Route path = "/">
           <Route path = '' element = {<NavFootLayout />}>
             <Route path = '' element = {<React.Suspense fallback = {<LazyLoading />}>
               <FrontPage />
             </React.Suspense>} />
           </Route>
         </Route>
-
-        <Route path = "/nav" >
-          <Route path = '' element = {<NavFootLayout />}>
-            <Route path = '' element = {<React.Suspense fallback = {<LazyLoading />}>
-              
-            </React.Suspense>} />
-          </Route>
-        </Route>
         
-        <Route path = "/auth">
+        <Route path = "/auth" element = {<AuthProtected />} >
           <Route path = "login" element = {<React.Suspense fallback = {<LazyLoading />}>
             <Login />
           </React.Suspense>} />

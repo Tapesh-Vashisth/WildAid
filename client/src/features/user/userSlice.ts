@@ -26,13 +26,12 @@ interface signupCredentialsType {
     name: string
     email: string
     password: string
-    otp: string
 }
 
 // signup 
 export const signup = createAsyncThunk("/user/signup", async (credentials: signupCredentialsType, {rejectWithValue}) => {
     try {
-        const response = await axiosInstance.post("/users/signup", credentials);
+        const response = await axiosInstance.post("/auth/signup", credentials);
         return response.data;
     } catch (err: any) {
         return rejectWithValue(err);
@@ -47,7 +46,7 @@ interface loginCredentialsType {
 // login 
 export const login = createAsyncThunk("/user/login", async (credentials: loginCredentialsType, {rejectWithValue}) => {
     try {
-        const response = await axiosInstance.post("/users/login", credentials);
+        const response = await axiosInstance.post("/auth/login", credentials);
         return response.data;
     } catch (err: any) {
         return rejectWithValue(err);
@@ -57,7 +56,7 @@ export const login = createAsyncThunk("/user/login", async (credentials: loginCr
 // logout 
 export const logout = createAsyncThunk("/user/logout", async (_, {rejectWithValue}) => {
     try {
-        const response = await axiosInstance.get("/users/logout");
+        const response = await axiosInstance.get("/auth/logout");
         return response.data;
     } catch (err: any) {
         return rejectWithValue(err);
@@ -67,7 +66,7 @@ export const logout = createAsyncThunk("/user/logout", async (_, {rejectWithValu
 // fetchUser
 export const fetch = createAsyncThunk("/user/fetch", async (_, {rejectWithValue}) => {
     try {
-        const response = await axiosInstance.get("/users/check");
+        const response = await axiosInstance.get("/auth/check");
         return response.data;
     } catch (err) {
         return rejectWithValue(err);

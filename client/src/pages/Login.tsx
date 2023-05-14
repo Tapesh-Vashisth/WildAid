@@ -4,90 +4,40 @@ import { NavLink, useNavigate } from "react-router-dom";
 import PetsIcon from "@mui/icons-material/Pets";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { login } from "../features/user/userSlice";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function Login() {
   const dispatch = useAppDispatch();
-  // const app = useAppSelector((state) => state.app);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-
-  const input = useRef()
-  const iconEye = useRef()
-
-  // useEffect(() => {
-  //   // const input: any = document.getElementById("input_pass"),
-  //   //   iconEye: any = document.getElementById("input_icon");
-
-  //   if (iconEye !== null) {
-  //     iconEye!.current!.focus()
-  //       // Change password to text
-  //       if (input!.type! === "password") {
-  //         // Switch to text
-  //         input.type = "text";
-
-  //         // Add icon
-  //         iconEye.classList.add("ri-eye-line");
-  //         // Remove icon
-  //         iconEye.classList.remove("ri-eye-off-line");
-  //       } else {
-  //         // Change to password
-  //         input.type = "password";
-
-  //         // Remove icon
-  //         iconEye.classList.remove("ri-eye-line");
-  //         // Add icon
-  //         iconEye.classList.add("ri-eye-off-line");
-  //       }
-  //     });
-  //   }
-  // }, []);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // if (!passwordIsValid) return;
-    // if (!emailIsValid) return;
+
+    console.log(email, password)
 
     // server request
-    // dispatch(login({ email: email, password: password }))
-    //   .unwrap()
-    //   .then((response) => {
-    //     // emailReset();
-    //     // passwordReset();
-    //     if (response.accessToken.length > 0) {
-    //       dispatch(
-    //         // appActions.setSuccess({
-    //         //   show: true,
-    //         //   message: "Successfully logged In!",
-    //         // })
-    //       );
-    //       navigate("/");
-    //     }
-    //   })
-      // .catch((err: any) => {
-      //   if (err.message === "Network Error") {
-      //     dispatch(
-      //       // setAlert({ show: true, message: "Network error/Server Down!" })
-      //     );
-      //   } else {
-      //     dispatch(
-      //       // setAlert({ show: true, message: err.response.data.message })
-      //     );
-      //   }
-      //   // if (status == 400) {
-      //   //     dispatch(setAlert({show: true, message: "The password you have entered is wrong!"}))
-      //   // }
-      //   // if (status == 404) {
-      //   //     dispatch(setAlert({show: true, message: "No such user exists!"}))
-      //   // }
-      //   // if (status == 500) {
-      //   //     dispatch(setAlert({show: true, message: "Server is down temporarily, please wait for some time"}))
-      //   // } else {
-      //   //     dispatch(setAlert({show: true, message: "Server is down temporarily, please wait for some time"}))
-      //   // }
-      // });
+    if (email && password) {
+      dispatch(login({ email: email, password: password }))
+        .unwrap()
+        .then((response) => {
+          if (response.accessToken.length > 0) {
+            navigate("/");
+          }
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+    }
   };
+
+  const visibilityToggler = () => {
+    setVisible((prev) => !prev);
+  }
 
   return (
     <div className={styles.container}>
@@ -97,7 +47,7 @@ function Login() {
           alt="login image"
           className={styles.login__img}
         />
-        <form action="" className={styles.login__form} onSubmit={formSubmitHandler}>
+        <form className={styles.login__form} onSubmit={formSubmitHandler}>
           <div>
             <h1 className={styles.login__title}>
               Welcome Back To{" "}
@@ -120,6 +70,7 @@ function Login() {
                   required
                   className={styles.login__input}
                   onChange={(e) => setEmail(e.target.value)}
+                  value = {email}
                 />
               </div>
 
@@ -128,7 +79,7 @@ function Login() {
 
                 <div className={styles.login__box}>
                   <input
-                    type="password"
+                    type={visible ? "text" : "password"} 
                     placeholder="Enter your password"
                     required
                     className={styles.login__input}
@@ -136,26 +87,22 @@ function Login() {
                     onChange={(e) => {
                       setPassword(e.target.value)
                     }}
-                    // onClick={() => input.current!.focus()}
+                    value = {password}
                   />
-                  <i
-                    className={`${styles.ri_eye_off_line}, ${styles.login__eye}`}
-                    id={styles.input_icon}
-                  ></i>
+                  {
+                    visible ?
+                      <VisibilityOffIcon className = {styles.login__eye} onClick = {visibilityToggler} />
+                      :
+                      <VisibilityIcon className={styles.login__eye} onClick = {visibilityToggler} />
+                  }
                 </div>
               </div>
             </div>
-
-            {/* <div className={styles.login__check}>
-              <input type="checkbox" className={styles.login__check_input} />
-              <label className={styles.login__check_label}>Remember me</label>
-            </div> */}
           </div>
 
           <div>
             <div className={styles.login__buttons}>
-              <button className={styles.login__button}>Log In</button>
-              {/* <button onClick={() => redirect('/auth/signup')} className={styles.login__button}>Sign Up</button> */}
+              <button type = "submit" className={styles.login__button}>Log In</button>
             </div>
 
             <a href="/auth/forgotpassword" className={styles.login__forgot}>
