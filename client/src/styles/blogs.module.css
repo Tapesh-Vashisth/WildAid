@@ -23,6 +23,12 @@
     min-width: 100%;
 }
 
+.main section {
+  background-color: lightcyan;
+  border-radius: 15px;
+  border: 1px solid lightblue;
+}
+
 .heading {
   display: flex;
   flex-direction: column;

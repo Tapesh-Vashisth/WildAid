@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import { CircularProgress } from "@mui/material";
 import styles from "../styles/blog.module.css";
@@ -38,19 +38,33 @@ const Blog = () => {
   };
 
   const [blog, setBlog] = useState<myBlog>(initialState);
+  const [otherBlogs, setOtherBlogs] = useState<Array<myBlog>>([initialState])
   const [isLoading, setLoading] = useState<Boolean>(false);
-
+  const [isLoadingOther, setLoadingOther] = useState<Boolean>(false)
+  
+  const navigate = useNavigate()
+  
   const id = useParams().id;
+//   const [blogId, setId] = useState<any>(id)
+
   const getBlogs = async () => {
     setLoading(true);
     const res = await axiosInstance.get("/blog/getblog/" + id);
-    console.log(res.data);
     setBlog(res.data);
     setLoading(false);
   };
 
+  const getOtherBlogs = async () => {
+    setLoadingOther(true)
+    const res = await axiosInstance.get("/blog/getotherblogs/" + id);
+    setOtherBlogs(res.data)
+    console.log(res.data)
+    setLoadingOther(false)
+  }
+
   useEffect(() => {
     getBlogs();
+    getOtherBlogs();
   }, []);
 
   return (
@@ -69,39 +83,45 @@ const Blog = () => {
             </header>
             <section className={styles.content}>
               <img
-                src="https://images.unsplash.com/photo-1466436578965-5cba086a1824?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=ac7f8b732c22f512fd982ffddc2078d6"
+                src={blog.image}
                 alt="large-image"
                 className={styles.poster_image}
               />
               <p>
                {blog.content}
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque ipsa enim, maxime dolorum, eum, incidunt a libero cupiditate nemo esse beatae officiis. Aspernatur, corrupti ipsa quam assumenda at minus asperiores facere culpa numquam. Quod dicta iure aliquam quas, aspernatur quae! Distinctio sapiente consequatur sequi? Assumenda dolor soluta veritatis sapiente, molestiae veniam quaerat nihil praesentium consequuntur. Praesentium et eos, quidem nobis quo alias cum expedita aliquam quaerat itaque ea, libero architecto culpa ex doloribus! Sit recusandae laborum numquam placeat quod quaerat voluptatibus accusamus, labore consequatur ipsum reprehenderit quas eligendi, maxime, eos cupiditate harum modi doloribus architecto enim assumenda eveniet! Dolorum a nihil facere velit magni laboriosam atque voluptatum error ad porro numquam ipsum, corporis in molestiae omnis amet nisi ipsa?
+               {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque ipsa enim, maxime dolorum, eum, incidunt a libero cupiditate nemo esse beatae officiis. Aspernatur, corrupti ipsa quam assumenda at minus asperiores facere culpa numquam. Quod dicta iure aliquam quas, aspernatur quae! Distinctio sapiente consequatur sequi? Assumenda dolor soluta veritatis sapiente, molestiae veniam quaerat nihil praesentium consequuntur. Praesentium et eos, quidem nobis quo alias cum expedita aliquam quaerat itaque ea, libero architecto culpa ex doloribus! Sit recusandae laborum numquam placeat quod quaerat voluptatibus accusamus, labore consequatur ipsum reprehenderit quas eligendi, maxime, eos cupiditate harum modi doloribus architecto enim assumenda eveniet! Dolorum a nihil facere velit magni laboriosam atque voluptatum error ad porro numquam ipsum, corporis in molestiae omnis amet nisi ipsa? */}
               </p>
             </section>
             <aside className={styles.aside}>
               <h4 className={styles.heading}>Other Articles you might Enjoy</h4>
-              <div className={styles.card}>
-                <img
-                  src="https://images.unsplash.com/photo-1457269315919-3cfc794943cd?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=2c42c1cac3092204f4c1afdca4d44e99"
-                  alt=""
-                />
-                <div>
-                  <p className={`${styles.heading} ${styles.title}`}>The big subtext</p>
-                  <p className={styles.author}>Mathews</p>
-                </div>
-              </div>
-              <div className={styles.card}>
-                <img
-                  src="https://images.unsplash.com/photo-1528640936814-4460bc015292?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=66812b5fda04c80ff762c8a920f562f3"
-                  alt=""
-                />
-                <div>
-                  <p className={`${styles.heading} ${styles.title}`}>The bug subtext</p>
-                  <p className={styles.author}>Harsha</p>
-                </div>
-              </div>
+              {otherBlogs.map((item) => {
+                return (
+                <a href={"/blog/"+item.uuid} style={{ textDecoration: "none", color: "black" }}>
+                    <div className={styles.card}>
+                        <img
+                        src={item.image}
+                        alt=""
+                        />
+                        <div>
+                        <p className={`${styles.heading} ${styles.title}`}>{item.title}</p>
+                        <p className={styles.author}>by {item.author}</p>
+                        </div>
+                    </div>
+                </a>
+                )
+              })}
+              {/* <div className={styles.card}>
+                    <img
+                    src="/images/dog_pet.jpg"
+                    alt=""
+                    />
+                    <div>
+                    <p className={`${styles.heading} ${styles.title}`}>Dogs</p>
+                    <p className={styles.author}>by Tapesh</p>
+                    </div>
+                </div> */}
             </aside>
-            <footer className={styles.footer}>
+            {/* <footer className={styles.footer}>
               <a
                 href="https://twitter.com/agneymenon"
                 target="_blank"
@@ -109,7 +129,7 @@ const Blog = () => {
               >
                 Boy with Silver Wings
               </a>
-            </footer>
+            </footer> */}
           </main>
         </>
       )}
