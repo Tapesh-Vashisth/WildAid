@@ -12,6 +12,9 @@ const Login  = React.lazy(() => import('./pages/Login'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
 const ErrorPage = React.lazy(() => import('./pages/Error404'));
 const FrontPage = React.lazy(() => import('./pages/FrontPage'));
+const CreateBlog = React.lazy(() => import('./pages/CreateBlog'));
+const Blogs = React.lazy(() => import('./pages/Blogs'));
+const Blog = React.lazy(() => import('./pages/Blog'));
 const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword'));
 
 function App() {
@@ -31,6 +34,15 @@ function App() {
           <Route path = '' element = {<NavFootLayout />}>
             <Route path = '' element = {<React.Suspense fallback = {<LazyLoading />}>
               <FrontPage />
+            </React.Suspense>} />
+            <Route path = 'createblog' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <CreateBlog />
+            </React.Suspense>} />
+            <Route path = 'blogs' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <Blogs />
+            </React.Suspense>} />
+            <Route path = 'blog/:id' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <Blog />
             </React.Suspense>} />
           </Route>
         </Route>

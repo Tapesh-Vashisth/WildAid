@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import Blog from "../../models/Blog";
 
 const addComment = async (req:Request, res: Response) => {
-    const { author, comment, blogId } = req.body
+    const { author, comment } = req.body
+    const blogId = req.params.id
 
     let existingBlog: any
     try {

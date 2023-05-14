@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const crypto_1 = require("crypto");
 const Blog_1 = __importDefault(require("../../models/Blog"));
 const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     const { author, title, content, image } = req.body;
     const date = new Date(Date.now());
     const comments = [];
