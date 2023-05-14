@@ -13,34 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Blog_1 = __importDefault(require("../../models/Blog"));
-const addComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { author, comment } = req.body;
-    const blogId = req.params.id;
-    let existingBlog;
+const getBlogs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let blogs;
     try {
-        existingBlog = yield Blog_1.default.findOne({ uuid: blogId }).exec();
+        blogs = yield Blog_1.default.find({}).exec();
     }
     catch (err) {
-        return res.status(500).json({ message: "Internal Server Error!" });
-    }
-    if (!existingBlog) {
-        return res.status(404).json({ message: "The blog you are trying to add your comment to was not found!!" });
-    }
-    const date = new Date(Date.now());
-    const newComment = {
-        author,
-        date,
-        comment
-    };
-    existingBlog.comments.push(newComment);
-    try {
-        yield existingBlog.save();
-    }
-    catch (err) {
-        return res.status(500).json({ message: "Internal Server Error!" });
+        return res
+            .status(500)
+            .json({ message: "Internal Server Error!" });
     }
     return res
         .status(200)
-        .json({ message: "Added comment successfully!" });
+        .json(blogs);
 });
-exports.default = addComment;
+exports.default = getBlogs;

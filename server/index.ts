@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRouter from "./routes/authRoutes";
+import blogRouter from "./routes/blogRoutes";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors({
 app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
+app.use('/api/blog', blogRouter);
 
 
 const port = process.env.PORT || 5500;
