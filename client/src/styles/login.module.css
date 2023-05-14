@@ -89,6 +89,7 @@ img {
 	backdrop-filter: blur(20px);
 	padding: 2rem;
 	border-radius: 1rem;
+    max-height: 95%;
 }
 
 .login__title {
@@ -200,7 +201,7 @@ img {
 }
 
 .login__button {
-	width: 50%;
+	/* width: 50%; */
 	padding: 14px 2rem;
 	border-radius: 6px;
 	background: linear-gradient(180deg, var(--first-color), var(--second-color));
@@ -209,6 +210,7 @@ img {
 	font-weight: var(--font-semi-bold);
 	box-shadow: 0 6px 24px hsla(244, 75%, 48%, 0.5);
 	margin-bottom: 1rem;
+    margin-right: 1rem;
 	cursor: pointer;
 }
 

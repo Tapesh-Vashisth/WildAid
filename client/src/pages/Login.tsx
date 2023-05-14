@@ -158,7 +158,7 @@ function Login() {
               {/* <button onClick={() => redirect('/auth/signup')} className={styles.login__button}>Sign Up</button> */}
             </div>
 
-            <a href="#" className={styles.login__forgot}>
+            <a href="/auth/forgotpassword" className={styles.login__forgot}>
               Forgot Password?
             </a>
             <br />
