@@ -1,8 +1,146 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styles from "../styles/login.module.css";
+import PetsIcon from "@mui/icons-material/Pets";
 
 function ForgotPassword() {
+
+  const [email, setEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [confirmPassword, setConfirmPassword] = useState<string>("")
+  const [otp, setOtp] = useState<string>("")
+
+  const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // if (!passwordIsValid) return;
+    // if (!emailIsValid) return;
+
+    // server request
+    // dispatch(login({ email: email, password: password }))
+    //   .unwrap()
+    //   .then((response) => {
+    //     // emailReset();
+    //     // passwordReset();
+    //     if (response.accessToken.length > 0) {
+    //       dispatch(
+    //         // appActions.setSuccess({
+    //         //   show: true,
+    //         //   message: "Successfully logged In!",
+    //         // })
+    //       );
+    //       navigate("/");
+    //     }
+    //   })
+      // .catch((err: any) => {
+      //   if (err.message === "Network Error") {
+      //     dispatch(
+      //       // setAlert({ show: true, message: "Network error/Server Down!" })
+      //     );
+      //   } else {
+      //     dispatch(
+      //       // setAlert({ show: true, message: err.response.data.message })
+      //     );
+      //   }
+      //   // if (status == 400) {
+      //   //     dispatch(setAlert({show: true, message: "The password you have entered is wrong!"}))
+      //   // }
+      //   // if (status == 404) {
+      //   //     dispatch(setAlert({show: true, message: "No such user exists!"}))
+      //   // }
+      //   // if (status == 500) {
+      //   //     dispatch(setAlert({show: true, message: "Server is down temporarily, please wait for some time"}))
+      //   // } else {
+      //   //     dispatch(setAlert({show: true, message: "Server is down temporarily, please wait for some time"}))
+      //   // }
+      // });
+  };
+
   return (
-    <div>ForgotPassword</div>
+    <div className={styles.container}>
+      <div className={styles.login__content}>
+        <img
+          src="https://wallpaperaccess.com/full/1209274.jpg"
+          alt="login image"
+          className={styles.login__img}
+        />
+        <form action="" className={styles.login__form} onSubmit={formSubmitHandler}>
+          <div>
+            <h3 className={styles.login__title}>
+              Change Password
+            </h3>
+            <p className={styles.login__description}>
+              Welcome, let's continue where we left off.
+            </p>
+          </div>
+
+          <div>
+            <div className={styles.login__inputs}>
+              <div>
+                <label className={styles.login__label}>Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  required
+                  className={styles.login__input}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+
+              <div className={styles.login__buttons}>
+                <button className={styles.login__button}>Send OTP</button>
+              {/* <button onClick={() => redirect('/auth/signup')} className={styles.login__button}>Sign Up</button> */}
+              </div>
+
+              <div>
+                <label className={styles.login__label}>Password</label>
+
+                <div className={styles.login__box}>
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    required
+                    className={styles.login__input}
+                    id={styles.input_pass}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                    }}
+                    // onClick={() => input.current!.focus()}
+                  />
+                  <i
+                    className={`${styles.ri_eye_off_line}, ${styles.login__eye}`}
+                    id={styles.input_icon}
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className={styles.login__check}>
+              <input type="checkbox" className={styles.login__check_input} />
+              <label className={styles.login__check_label}>Remember me</label>
+            </div> */}
+          </div>
+
+          <div>
+            <div className={styles.login__buttons}>
+              <button className={styles.login__button}>Submit</button>
+              {/* <button onClick={() => redirect('/auth/signup')} className={styles.login__button}>Sign Up</button> */}
+            </div>
+
+            {/* <a href="#" className={styles.login__forgot}>
+              Forgot Password?
+            </a> */}
+            {/* <br /> */}
+            <a href="/auth/signup" className={styles.login__forgot}>
+              {/* {" "} */}
+              <span> Don't have an account? </span> Sign Up Now
+            </a>
+            <br />
+            <a href="/" className={styles.login__forgot}>
+              Go Home &rarr;{" "}
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
   )
 }
 
