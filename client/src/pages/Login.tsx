@@ -104,7 +104,7 @@ function Login() {
                       visible ?
                         <VisibilityOffIcon className = {styles.login__eye} onClick = {visibilityToggler} />
                         :
-                        <VisibilityIcon className={styles.login__eye} onClick = {visibilityToggler} />
+                        <VisibilityIcon className = {styles.login__eye} onClick = {visibilityToggler} />
                     }
                   </div>
                 </div>
