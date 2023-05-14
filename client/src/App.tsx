@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path = "/" element = {<Protected />} >
+        <Route path = "/">
           <Route path = '' element = {<NavFootLayout />}>
             <Route path = '' element = {<React.Suspense fallback = {<LazyLoading />}>
               <FrontPage />

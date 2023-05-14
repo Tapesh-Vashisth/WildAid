@@ -14,11 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("../../models/User"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const Otp_1 = __importDefault(require("../../models/Otp"));
 const crypto_1 = require("crypto");
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("signup");
-    const { name, email, password, otp, image } = req.body;
+    const { name, email, password } = req.body;
     const uuid = (0, crypto_1.randomUUID)();
     let existingUser;
     try {
@@ -35,33 +34,13 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     // hashing the password using bcryptjs (synchronous) 
     const hashedPassword = bcryptjs_1.default.hashSync(password, 5);
-    let otpmodel;
-    try {
-        otpmodel = yield Otp_1.default.findOne({ email: email }).exec();
-    }
-    catch (err) {
-        return res.status(400).json({ message: 'Database Error' });
-    }
-    // if no otp was found in the otp database 
-    if (!otpmodel) {
-        return res
-            .status(404)
-            .json({ message: "Otp not found for this user!" });
-    }
-    // if the wrong otp was entered while signing up
-    const otpDB = otpmodel.otp;
-    if (otp !== otpDB) {
-        return res
-            .status(400)
-            .json({ message: "Wrong otp entered!" });
-    }
     const user = new User_1.default({
         uuid: uuid,
         name,
         email,
         password: hashedPassword,
         emailVerified: true,
-        image: image
+        image: ""
     });
     // after all validation, creating the user in the database
     try {
