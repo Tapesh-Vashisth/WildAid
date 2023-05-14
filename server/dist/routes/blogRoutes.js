@@ -8,9 +8,11 @@ const createBlog_1 = __importDefault(require("../controllers/blog/createBlog"));
 const getBlogs_1 = __importDefault(require("../controllers/blog/getBlogs"));
 const addComment_1 = __importDefault(require("../controllers/blog/addComment"));
 const getBlog_1 = __importDefault(require("../controllers/blog/getBlog"));
+const getOtherBlogs_1 = __importDefault(require("../controllers/blog/getOtherBlogs"));
 const router = express_1.default.Router();
 router.get('/getblogs', getBlogs_1.default);
 router.get('/getblog/:id', getBlog_1.default);
+router.get('/getotherblogs/:id', getOtherBlogs_1.default);
 // router.use(verifyJWT)
 router.post('/createblog', createBlog_1.default);
 router.put('/addcomment/:id', addComment_1.default);
