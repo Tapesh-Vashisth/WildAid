@@ -48,6 +48,18 @@ function Login() {
     setVisible((prev) => !prev);
   }
 
+  const eyeStyle = {
+    width: "max-content",
+    height: "max-content",
+    position: "absolute",
+    right: "0.75rem",
+    top: 0,
+    bottom: 0,
+    margin: "auto 0",
+    fontSize: "1.25rem",
+    cursor: "pointer"
+  }
+
   return (
     <>
       <AlertDismissable />
@@ -102,9 +114,13 @@ function Login() {
                     />
                     {
                       visible ?
-                        <VisibilityOffIcon className = {styles.login__eye} onClick = {visibilityToggler} />
+                        <div className={styles.login__eye}>
+                          <VisibilityOffIcon onClick = {visibilityToggler} />
+                        </div>
                         :
-                        <VisibilityIcon className = {styles.login__eye} onClick = {visibilityToggler} />
+                        <div className={styles.login__eye}>
+                          <VisibilityIcon onClick = {visibilityToggler} />
+                        </div>  
                     }
                   </div>
                 </div>

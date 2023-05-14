@@ -25,8 +25,6 @@ app.use('/api/blog', blogRouter);
 
 const port = process.env.PORT || 5500;
 
-
-
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@wildaid-db.04bar7c.mongodb.net/?retryWrites=true&w=majority`).then(() => {
     console.log("database connected");
     app.listen(port, () => {
