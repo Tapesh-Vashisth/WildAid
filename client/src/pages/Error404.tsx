@@ -6,7 +6,7 @@ function Error404() {
     <div id={styles.container_error}>
       <img src='/images/image.png' className={styles.error_image}></img>
       <div id={styles.buttonerror}>
-        <a href="#">Homepage</a>
+        <a href="/">Homepage</a>
       </div>
     </div>
   )
