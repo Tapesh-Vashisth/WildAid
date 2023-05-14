@@ -30,13 +30,16 @@ const CreateBlog = () => {
     }
   };
 
-  const createBlogHandler = async () => {
+  const createBlogHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log("hi")
     const res = await axiosInstance.post("/blog/createblog", {
       author: User.name,
       title,
       content,
       image,
     });
+    console.log(res)
 
     if (res.status < 400) {
       navigate("/");
@@ -45,7 +48,7 @@ const CreateBlog = () => {
 
   return (
     <React.Fragment>
-      <form onSubmit={createBlogHandler}>
+      <form onSubmit={e => createBlogHandler(e)}>
         <Stack
           gap={2}
           spacing={2}

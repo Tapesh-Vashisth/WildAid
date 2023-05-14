@@ -12,31 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const crypto_1 = require("crypto");
 const Blog_1 = __importDefault(require("../../models/Blog"));
-const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    const { author, title, content, image } = req.body;
-    const date = new Date(Date.now());
-    const comments = [];
-    const uuid = (0, crypto_1.randomUUID)();
-    const newBlog = new Blog_1.default({
-        uuid,
-        author,
-        title,
-        content,
-        image,
-        date,
-        comments
-    });
+const getBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    let blog;
     try {
-        yield newBlog.save();
+        blog = yield Blog_1.default.findOne({ uuid: id }).exec();
     }
     catch (err) {
-        return res.status(500).json({ message: "Internal server error!" });
+        return res
+            .status(500)
+            .json({ message: "Internal Server Error!" });
     }
     return res
         .status(200)
-        .json({ message: "Blog created successfully!" });
+        .json(blog);
 });
-exports.default = createBlog;
+exports.default = getBlog;

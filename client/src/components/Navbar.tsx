@@ -72,7 +72,7 @@ function Navbar() {
   return (
     <>
       <AlertDismissable />
-      <AppBar position="static" className={styles.navbar_blur} style={{backgroundColor: "transparent", color: "black"}}>
+      <AppBar position="static" className={styles.navbar_blur} style={{backgroundColor: "pink", color: "black", position: "sticky"}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -102,7 +102,6 @@ function Navbar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
               >
                 <MenuIcon />
               </IconButton>
@@ -122,11 +121,12 @@ function Navbar() {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: 'block', md: 'none' },
+                  color: "white"
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                  <MenuItem key={page} onClick={handleCloseNavMenu} color="black">
+                    <Typography textAlign="center" color="black">{page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -156,7 +156,7 @@ function Navbar() {
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'black', display: 'block' }}
                 >
                   {page}
                 </Button>
@@ -203,7 +203,7 @@ function Navbar() {
               </Box>
               :
               <MenuItem onClick={() => {navigate("/auth/login")}}>
-                <Typography textAlign="center" color="white">Login</Typography>
+                <Typography textAlign="center" color="black">LOGIN</Typography>
               </MenuItem>
             }
           </Toolbar>
