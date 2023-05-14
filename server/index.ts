@@ -1,21 +1,35 @@
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
-import path from "path";
+import cookieParser from "cookie-parser";
 import cors from "cors";
+import mongoose from "mongoose";
+import authRouter from "./routes/authRoutes";
 
 dotenv.config();
 
 const app: Express = express();
 
-app.use(express.json());
-app.use(cors());
+// middleware
+app.use(express.json({limit: '50mb'}));
+app.use(cors({
+    origin:["http://localhost:3000", "https://stock-hub.netlify.app"],
+    methods:['POST','GET','HEAD','PUT','DELETE'],
+    credentials: true
+}))
+app.use(cookieParser());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World From the Typescript Server!')
-});
+app.use('/api/auth', authRouter);
 
-const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-});
+const port = process.env.PORT || 5500;
+
+
+
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@wildaid-db.04bar7c.mongodb.net/?retryWrites=true&w=majority`).then(() => {
+    console.log("database connected");
+    app.listen(port, () => {
+        console.log(`server listening on port ${port}`)
+    });
+}).catch((err) => {
+    console.log(err);
+})
