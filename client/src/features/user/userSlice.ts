@@ -83,7 +83,7 @@ interface userData {
 // updateUser 
 export const updateUser = createAsyncThunk("/user/update", async (userData: userData, {rejectWithValue}) => {
     try {
-        const response = await axiosInstance.post("/users/updateDetails", userData);
+        const response = await axiosInstance.post("/auth/updateDetails", userData);
         return response.data;
     } catch (err) {
         return rejectWithValue(err);
@@ -98,7 +98,7 @@ interface deleteType {
 // deleteUser 
 export const deleteUser = createAsyncThunk("/user/delete", async (data: deleteType, {rejectWithValue}) => {
     try {
-        const response = await axiosInstance.post("/users/deleteUser", data);
+        const response = await axiosInstance.post("/auth/deleteUser", data);
         return response.data;
     } catch (err) {
         return rejectWithValue(err);

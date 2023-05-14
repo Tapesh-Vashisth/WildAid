@@ -6,6 +6,7 @@ import AuthProtected from './components/AuthProtected';
 import { fetch } from './features/user/userSlice';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import NavFootLayout from './components/NavFootLayout';
+import Profile from './pages/Profile';
 const Navbar = React.lazy(() => import('./components/Navbar'))
 const Login  = React.lazy(() => import('./pages/Login'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
@@ -34,6 +35,14 @@ function App() {
             </React.Suspense>} />
             <Route path = 'createblog' element = {<React.Suspense fallback = {<LazyLoading />}>
               <CreateBlog />
+            </React.Suspense>} />
+          </Route>
+        </Route>
+
+        <Route path = "/profile" element = {<Protected />} >
+          <Route path = "" element = {<NavFootLayout />}>
+            <Route path = "" element = {<React.Suspense fallback = {<LazyLoading />}>
+              <Profile />
             </React.Suspense>} />
           </Route>
         </Route>

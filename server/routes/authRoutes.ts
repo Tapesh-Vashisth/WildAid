@@ -8,6 +8,9 @@ import verifyJWT from "../middleware/verifyJWT"
 import sendResetPasswordOtp from '../controllers/auth/sendResetPasswordOtp'
 import resetPassword from '../controllers/auth/resetPassword'
 import check from "../controllers/auth/check";
+import updateImage from '../controllers/auth/updateImage'
+import editAccountDetails from '../controllers/auth/editAccountDetails'
+import deleteAccount from '../controllers/auth/deleteAccount'
 
 const router = express.Router();
 
@@ -22,5 +25,8 @@ router.use(verifyJWT)
 
 router.get('/check', check);
 router.get('/logout', logout);
+router.post('/updateimage', updateImage)
+router.put('/editaccount', editAccountDetails)
+router.post('/deleteUser', deleteAccount)
 
 export default router;
