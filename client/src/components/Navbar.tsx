@@ -19,7 +19,6 @@ import AlertDismissable from "./Alert";
 import { logout } from "../features/user/userSlice";
 import { appActions } from "../features/appSlice";
 
-const pages = ['Blog'];
 
 function Navbar() {
   const navigate = useNavigate();
@@ -67,6 +66,14 @@ function Navbar() {
     }
   ];
   
+  const pages = [
+    {
+      value: 'Blogs',
+      method: () => {
+        navigate("/blogs");
+      } 
+    }
+  ];
 
 
   return (
@@ -125,8 +132,8 @@ function Navbar() {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu} color="black">
-                    <Typography textAlign="center" color="black">{page}</Typography>
+                  <MenuItem key={page.value} onClick={page.method} color="black">
+                    <Typography textAlign="center" color="black">{page.value}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -154,11 +161,11 @@ function Navbar() {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
+                  key={page.value}
+                  onClick={page.method}
                   sx={{ my: 2, color: 'black', display: 'block' }}
                 >
-                  {page}
+                  {page.value}
                 </Button>
               ))}
             </Box>
