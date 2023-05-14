@@ -5,6 +5,7 @@ import Protected from './components/Protected';
 import { fetch } from './features/user/userSlice';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import NavFootLayout from './components/NavFootLayout';
+import AuthProtected from './components/AuthProtected';
 const Login  = React.lazy(() => import('./pages/Login'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
 const ErrorPage = React.lazy(() => import('./pages/Error404'));
@@ -32,7 +33,7 @@ function App() {
           </Route>
         </Route>
         
-        <Route path = "/auth">
+        <Route path = "/auth" element = {<AuthProtected />} >
           <Route path = "login" element = {<React.Suspense fallback = {<LazyLoading />}>
             <Login />
           </React.Suspense>} />
