@@ -12,14 +12,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import { Stack } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useNavigate } from "react-router-dom";
 import AlertDismissable from "./Alert";
 import { logout } from "../features/user/userSlice";
 import { appActions } from "../features/appSlice";
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Blog'];
 
 function Navbar() {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ function Navbar() {
     {
       value: 'Profile',
       method: () => {
-
+        navigate("/profile");
       }
     },
     {
@@ -60,7 +60,7 @@ function Navbar() {
           handleCloseUserMenu();
         })
         .catch((err) => {
-          setAlert({show: true, message: err.message});
+          setAlert({show: true, message: err.response.data.message});
           handleCloseUserMenu();
         })
       } 
@@ -131,9 +131,10 @@ function Navbar() {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Stack sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+              <img src = "/images/logo2.png" style = {{width: "40px"}} />
+            </Stack>
             <Typography
-              variant="h5"
               noWrap
               component="a"
               href=""
@@ -143,12 +144,12 @@ function Navbar() {
                 flexGrow: 1,
                 fontFamily: 'monospace',
                 fontWeight: 700,
-                letterSpacing: '.3rem',
+                letterSpacing: '.05rem',
                 color: 'inherit',
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              WildAid
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
@@ -168,7 +169,13 @@ function Navbar() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    {
+                      user.image
+                      ?
+                      <img src = {user.image} style = {{width: "45px", height: "45px", borderRadius: "100%", backgroundSize: "cover"}} />
+                      :
+                      <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    }
                   </IconButton>
                 </Tooltip>
                 <Menu
