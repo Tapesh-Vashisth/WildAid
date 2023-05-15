@@ -68,28 +68,6 @@ const Blogs = () => {
                         </section>
                     )
                 })}
-                {blogs.map((item) => {
-                    return (
-                        <section>
-                            <h3> {item.title} </h3>
-                            <img src={item.image} width={250} alt="" />
-                            <p className={styles.date}>{new Date(item.date).toUTCString()}</p>
-                            <p>{item.content.length > 40 ? item.content.substring(0, 40)+"..." : item.content}</p>
-                            <a href={"/blog/"+item.uuid}>Read More</a>
-                        </section>
-                    )
-                })}
-                {blogs.map((item) => {
-                    return (
-                        <section>
-                            <h3> {item.title} </h3>
-                            <img src={item.image} width={250} alt="" />
-                            <p className={styles.date}>{new Date(item.date).toUTCString()}</p>
-                            <p>{item.content.length > 40 ? item.content.substring(0, 40)+"..." : item.content}</p>
-                            <a href={"/blog/"+item.uuid}>Read More</a>
-                        </section>
-                    )
-                })}
             </div>
         </>
     }

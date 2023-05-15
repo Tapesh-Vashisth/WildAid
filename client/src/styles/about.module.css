@@ -1,0 +1,10 @@
+.mainContainer {
+    padding: 30px
+}
+
+.points {
+    margin: 30px 0px;
+    padding: 20px;
+    border-radius: 10px; 
+    background-color: bisque;
+}

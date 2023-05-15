@@ -51,15 +51,15 @@ function Footer() {
 
       <div className={styles.tagContainer}>
         <div style = {{display: "flex", flexDirection: "row", justifyContent: "center", padding: "5px"}}>
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <a className="btn btn-outline-light btn-floating m-1" href="#" role="button">
               <FacebookIcon />
             </a>
 
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <a className="btn btn-outline-light btn-floating m-1" href="#" role="button">
               <TwitterIcon />
             </a>
 
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <a className="btn btn-outline-light btn-floating m-1" href="https://github.com/Tapesh-Vashisth/WildAid" role="button">
               <GitHubIcon />  
             </a>
         </div>
