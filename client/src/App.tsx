@@ -19,6 +19,7 @@ const Blog = React.lazy(() => import('./pages/Blog'));
 const Questions = React.lazy(() => import('./pages/Questions'))
 const Question = React.lazy(() => import('./pages/Question'))
 const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword'));
+const AboutUs = React.lazy(() => import('./pages/AboutUs'));
 
 function App() {
   const dispatch = useAppDispatch();
@@ -49,6 +50,9 @@ function App() {
             </React.Suspense>} />
             <Route path = 'question/:id' element = {<React.Suspense fallback = {<LazyLoading />}>
               <Question />
+            </React.Suspense>} />
+            <Route path = 'about' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <AboutUs />
             </React.Suspense>} />
           </Route>
         </Route>

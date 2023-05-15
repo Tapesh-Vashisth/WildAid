@@ -16,7 +16,7 @@ const app = (0, express_1.default)();
 // middleware
 app.use(express_1.default.json({ limit: '50mb' }));
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:3000", "https://stock-hub.netlify.app"],
+    origin: ["http://localhost:3000", "https://wildaid.netlify.app"],
     methods: ['POST', 'GET', 'HEAD', 'PUT', 'DELETE'],
     credentials: true
 }));

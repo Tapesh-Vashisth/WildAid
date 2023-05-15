@@ -79,6 +79,12 @@ function Navbar() {
         navigate("/blogs");
       } 
     },
+    {
+      value: 'About',
+      method: () => {
+        navigate("/about");
+      } 
+    },
   ];
 
 
