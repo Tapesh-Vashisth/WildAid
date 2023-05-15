@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Question_1 = __importDefault(require("../../models/Question"));
 const getQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("get question");
     const id = req.params.id;
     let question;
     try {
@@ -24,5 +25,8 @@ const getQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             .status(500)
             .json({ message: "Internal Server Error!" });
     }
+    return res
+        .status(200)
+        .json(question);
 });
 exports.default = getQuestion;

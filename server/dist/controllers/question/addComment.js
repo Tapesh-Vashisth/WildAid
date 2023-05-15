@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Question_1 = __importDefault(require("../../models/Question"));
 const addComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body, req.params.id);
     const { author, comment } = req.body;
     const questionId = req.params.id;
     let existingQuestion;
@@ -33,11 +34,15 @@ const addComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         comment,
         likes: 0
     };
-    existingQuestion.comments.push(newComment);
+    let curcom = existingQuestion.comments;
+    curcom.push(newComment);
+    existingQuestion.comments = curcom;
+    console.log(existingQuestion);
     try {
         yield existingQuestion.save();
     }
     catch (err) {
+        console.log(err);
         return res.status(500).json({ message: "Internal Server Error!" });
     }
     return res
