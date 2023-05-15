@@ -48,17 +48,6 @@ function Login() {
     setVisible((prev) => !prev);
   }
 
-  const eyeStyle = {
-    width: "max-content",
-    height: "max-content",
-    position: "absolute",
-    right: "0.75rem",
-    top: 0,
-    bottom: 0,
-    margin: "auto 0",
-    fontSize: "1.25rem",
-    cursor: "pointer"
-  }
 
   return (
     <>
@@ -75,7 +64,7 @@ function Login() {
               <h1 className={styles.login__title}>
                 Welcome Back To{" "}
                 <span>
-                  WildAid! <PetsIcon></PetsIcon>{" "}
+                  WildAid! <img src = "/images/logo2.png" style = {{width: "30px"}} />{" "}
                 </span>
               </h1>
               <p className={styles.login__description}>

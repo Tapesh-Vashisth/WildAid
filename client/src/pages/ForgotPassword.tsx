@@ -79,7 +79,7 @@ function ForgotPassword() {
           <form className={styles.login__form} onSubmit={formSubmitHandler} style={{ rowGap: page===1 ? "0rem" : "2.5rem", paddingBottom: "0rem" }}>
             <div>
               <h3 className={styles.login__title}>
-                Change Password <span> <PetsIcon /> </span>
+                Change Password <span> <img src = "/images/logo2.png" style = {{width: "30px"}} /> </span>
               </h3>
             </div>
 
