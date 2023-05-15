@@ -54,7 +54,7 @@ const Questions = () => {
           return (
             <>
               <div className={styles.main}>
-                <img src={item.image ? item.image : "/"} width={"100%"} />
+                <img src={item.image ? item.image : "/images/noimage.png"} width={"100%"} />
                 <div className={styles.middle}>
                   <p>{item.comments.length + " comments"}</p>
                   <p>{item.likes + " votes"}</p>
@@ -99,7 +99,7 @@ const Questions = () => {
                         </>
                       ))}
                     </div>
-                    <p>by Prasad</p>
+                    <p>by {" " + item.author}</p>
                   </div>
                 </div>
               </div>

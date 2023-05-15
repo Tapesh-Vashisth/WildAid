@@ -17,7 +17,7 @@ function Footer() {
                   <img src="Img/footer-icon-01.png" alt="" />
                 </div>
                 <div className="add-content">
-                  <h5>Address</h5>
+                  <h5 style = {{color: "white"}}>Address</h5>
                   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut veniam </p>
                 </div>
@@ -29,9 +29,8 @@ function Footer() {
                   <img src="Img/footer-icon-02.png" alt="" />
                 </div>
                 <div className="add-content">
-                  <h5>Phone</h5>
-                  <p>  +(91) 000000000 <br />
-                  +(91) 000000000  </p>
+                  <h5 style = {{color: "white"}}>Phone</h5>
+                  <p>123456789</p>
                 </div>
               </div>
             </div>
@@ -41,7 +40,7 @@ function Footer() {
                   <img src="Img/footer-icon-03.png" alt="" />
                 </div>
                 <div className="add-content">
-                  <h5>Email</h5>
+                  <h5 style = {{color: "white"}}>Email</h5>
                   <p> <a href="mailto:" style={{textDecoration:"none"}}>tapeshvashisth789@gmail.com</a> </p>
                 </div>
               </div>
@@ -50,9 +49,8 @@ function Footer() {
       </div>
 
 
-      <footer className="bg-dark text-center text-white">
-        <div className="container p-4 pb-0">
-          <section className="mb-4">
+      <div className={styles.tagContainer}>
+        <div style = {{display: "flex", flexDirection: "row", justifyContent: "center", padding: "5px"}}>
             <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
               <FacebookIcon />
             </a>
@@ -64,13 +62,12 @@ function Footer() {
             <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
               <GitHubIcon />  
             </a>
-          </section>
         </div>
 
         <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
           WildAid © 2023 All Rights Reserved.
         </div>
-      </footer>
+      </div>
       </footer>
     </>
   )
