@@ -64,7 +64,7 @@ function Footer() {
             </a>
         </div>
 
-        <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+        <div className="text-center p-2" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
           WildAid © 2023 All Rights Reserved.
         </div>
       </div>

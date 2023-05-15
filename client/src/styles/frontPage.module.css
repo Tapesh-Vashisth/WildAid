@@ -1,0 +1,52 @@
+.sec1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #111111;
+    align-items: center;
+    padding: 80px 0px;
+    min-height: 100vh;
+}
+
+
+.head1 {
+    padding: 30px 20px;
+    max-width: 450px;
+    color: white;
+    text-align: center;
+}
+
+
+.sec2 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    padding: 100px 50px;
+}
+
+.head2 {
+    text-align: center;
+}
+
+.visionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+.vision {
+    background-color: rgb(236, 203, 176);
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 1px 1px 1px black;
+    color: black;
+}
+
+.vision:hover {
+    box-shadow: 2px 2px 2px black;
+}
+
