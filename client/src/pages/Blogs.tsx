@@ -52,10 +52,13 @@ const Blogs = () => {
         ?
         <p>No blogs!</p> 
         :
-        <>
+        <div className={styles.skc}>
             <div className={styles.heading}>
                 <h2>Recent Blogs</h2>
             </div>
+            <a href={"/createblog/"}>
+                <button className={styles.askques}>WRITE A BLOG</button>
+            </a>
             <div className={styles.main}>
                 {blogs.map((item) => {
                     return (
@@ -69,7 +72,7 @@ const Blogs = () => {
                     )
                 })}
             </div>
-        </>
+        </div>
     }
     </>
   )

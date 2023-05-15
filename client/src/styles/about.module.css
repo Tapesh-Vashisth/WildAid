@@ -1,5 +1,10 @@
 .mainContainer {
-    padding: 30px
+    padding: 30px;
+    position: relative;
+    background-image: url("https://images.hdqwalls.com/download/rabbit-hd-lo-1920x1080.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(5px);
 }
 
 .points {
@@ -7,4 +12,20 @@
     padding: 20px;
     border-radius: 10px; 
     background-color: bisque;
+}
+
+/* .mainContainer {
+    position: relative;
+    width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+} */
+
+.login__img {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+	object-position: center;
 }
