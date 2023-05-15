@@ -1,0 +1,9 @@
+.footer {
+    color: white;
+}
+
+
+.mainTagContainer {
+    display: flex;
+    justify-content: center;
+}
