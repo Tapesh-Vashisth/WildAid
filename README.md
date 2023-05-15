@@ -1,13 +1,14 @@
-
 # WildAid
 
 A Website to provide a way for information to reach people quickly regarding Animal's health care!
 
 live link - [https://wildaid.netlify.app/](https://wildaid.netlify.app/)
+Replit link - [https://replit.com/@tapeshvashisth/WildAid](https://replit.com/@tapeshvashisth/WildAid)
 
 NOTE
 
 Currently, server is hosted on free tier of [@render.com](https://render.com/) and that's why, it can take a while to first load.
+
 ## Project Contributors
 
 - [@Tapesh Vashisth](https://github.com/Tapesh-Vashisth)
@@ -22,7 +23,11 @@ Currently, server is hosted on free tier of [@render.com](https://render.com/) a
 
 **Database:** MongoDB
 
+**Platform:** Replit
+ 
 ## Run Locally
+
+Note - To run the Project locally, go to the /client/src/api/axios.ts and change the baseurl to "http://localhost:5500/api"
 
 Clone the project
 
