@@ -3,6 +3,12 @@ import styles from "../styles/about.module.css";
 
 function AboutUs() {
   return (
+    <>
+    {/* <img
+        src="/images/rabbit.jpg"
+        alt="login image"
+        className={styles.login__img}
+        /> */}
     <div className={styles.mainContainer}>
         <div className = {styles.points}>
             <div>
@@ -35,6 +41,7 @@ function AboutUs() {
             </div>  
         </div>
     </div>
+    </>
   )
 }
 
