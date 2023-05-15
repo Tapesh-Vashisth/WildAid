@@ -9,7 +9,7 @@ const store = configureStore({
         user: userReducer,
         app: appReducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}).concat(logger)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false})
 })
 
 export default store;
