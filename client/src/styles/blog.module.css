@@ -10,7 +10,6 @@ body {
   grid-template-columns: 4rem 3fr 1fr 2rem;
   margin-top: 2rem;
   grid-column-gap: 2rem;
-  max-width: 350px;
 }
 
 .header {

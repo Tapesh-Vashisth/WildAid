@@ -38,30 +38,30 @@ const Blog = () => {
   };
 
   const [blog, setBlog] = useState<myBlog>(initialState);
-  const [otherBlogs, setOtherBlogs] = useState<Array<myBlog>>([initialState])
+  const [otherBlogs, setOtherBlogs] = useState<Array<myBlog>>([initialState]);
   const [isLoading, setLoading] = useState<Boolean>(false);
-  const [isLoadingOther, setLoadingOther] = useState<Boolean>(false)
-  
-  const navigate = useNavigate()
-  
+  const [isLoadingOther, setLoadingOther] = useState<Boolean>(false);
+
+  const navigate = useNavigate();
+
   const id = useParams().id;
-//   const [blogId, setId] = useState<any>(id)
+  //   const [blogId, setId] = useState<any>(id)
 
   const getBlogs = async () => {
     setLoading(true);
     const res = await axiosInstance.get("/blog/getblog/" + id);
     setBlog(res.data);
-    if (res.data===null) navigate('/404')
+    if (res.data === null) navigate("/404");
     setLoading(false);
   };
 
   const getOtherBlogs = async () => {
-    setLoadingOther(true)
+    setLoadingOther(true);
     const res = await axiosInstance.get("/blog/getotherblogs/" + id);
-    setOtherBlogs(res.data)
-    console.log(res.data)
-    setLoadingOther(false)
-  }
+    setOtherBlogs(res.data);
+    console.log(res.data);
+    setLoadingOther(false);
+  };
 
   useEffect(() => {
     getBlogs();
@@ -79,7 +79,10 @@ const Blog = () => {
           <main className={styles.container}>
             <header className={styles.header}>
               <p className={styles.subheading}>by - {blog.author}</p>
-              <p className={styles.subheading}> {new Date(blog.date).toUTCString()} </p>
+              <p className={styles.subheading}>
+                {" "}
+                {new Date(blog.date).toUTCString()}{" "}
+              </p>
               <h1 className={styles.heading}> {blog.title} </h1>
             </header>
             <section className={styles.content}>
@@ -89,28 +92,36 @@ const Blog = () => {
                 className={styles.poster_image}
               />
               <p style={{ marginTop: "30px" }}>
-               {blog.content}
-               {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque ipsa enim, maxime dolorum, eum, incidunt a libero cupiditate nemo esse beatae officiis. Aspernatur, corrupti ipsa quam assumenda at minus asperiores facere culpa numquam. Quod dicta iure aliquam quas, aspernatur quae! Distinctio sapiente consequatur sequi? Assumenda dolor soluta veritatis sapiente, molestiae veniam quaerat nihil praesentium consequuntur. Praesentium et eos, quidem nobis quo alias cum expedita aliquam quaerat itaque ea, libero architecto culpa ex doloribus! Sit recusandae laborum numquam placeat quod quaerat voluptatibus accusamus, labore consequatur ipsum reprehenderit quas eligendi, maxime, eos cupiditate harum modi doloribus architecto enim assumenda eveniet! Dolorum a nihil facere velit magni laboriosam atque voluptatum error ad porro numquam ipsum, corporis in molestiae omnis amet nisi ipsa? */}
+                {blog.content}
+                {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque ipsa enim, maxime dolorum, eum, incidunt a libero cupiditate nemo esse beatae officiis. Aspernatur, corrupti ipsa quam assumenda at minus asperiores facere culpa numquam. Quod dicta iure aliquam quas, aspernatur quae! Distinctio sapiente consequatur sequi? Assumenda dolor soluta veritatis sapiente, molestiae veniam quaerat nihil praesentium consequuntur. Praesentium et eos, quidem nobis quo alias cum expedita aliquam quaerat itaque ea, libero architecto culpa ex doloribus! Sit recusandae laborum numquam placeat quod quaerat voluptatibus accusamus, labore consequatur ipsum reprehenderit quas eligendi, maxime, eos cupiditate harum modi doloribus architecto enim assumenda eveniet! Dolorum a nihil facere velit magni laboriosam atque voluptatum error ad porro numquam ipsum, corporis in molestiae omnis amet nisi ipsa? */}
               </p>
             </section>
             <aside className={styles.aside}>
               <h4 className={styles.heading}>Other Articles you might Enjoy</h4>
-              {otherBlogs.map((item) => {
-                return (
-                <a href={"/blog/"+item.uuid} style={{ textDecoration: "none", color: "black" }}>
-                    <div className={styles.card}>
-                        <img
-                        src={item.image}
-                        alt=""
-                        />
+              {isLoadingOther ? (
+                <div className={styles.main}>
+                  <CircularProgress color="secondary" />
+                </div>
+              ) : (
+                otherBlogs.map((item) => {
+                  return (
+                    <a
+                      href={"/blog/" + item.uuid}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <div className={styles.card}>
+                        <img src={item.image} alt="" />
                         <div>
-                        <p className={`${styles.heading} ${styles.title}`}>{item.title}</p>
-                        <p className={styles.author}>by {item.author}</p>
+                          <p className={`${styles.heading} ${styles.title}`}>
+                            {item.title}
+                          </p>
+                          <p className={styles.author}>by {item.author}</p>
                         </div>
-                    </div>
-                </a>
-                )
-              })}
+                      </div>
+                    </a>
+                  );
+                })
+              )}
             </aside>
           </main>
         </>

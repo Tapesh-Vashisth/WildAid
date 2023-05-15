@@ -68,11 +68,17 @@ function Navbar() {
   
   const pages = [
     {
+      value: 'Questions',
+      method: () => {
+        navigate("/questions");
+      }
+    },
+    {
       value: 'Blogs',
       method: () => {
         navigate("/blogs");
       } 
-    }
+    },
   ];
 
 

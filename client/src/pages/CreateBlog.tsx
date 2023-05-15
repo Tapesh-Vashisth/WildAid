@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "../styles/createblog.module.css";
 import { useAppSelector } from "../store/hooks";
 import { Button, Stack, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -42,7 +41,7 @@ const CreateBlog = () => {
     console.log(res)
 
     if (res.status < 400) {
-      navigate("/");
+      navigate("/blogs");
     }
   };
 
@@ -55,7 +54,7 @@ const CreateBlog = () => {
           direction="column"
           sx={{ marginBottom: 4, padding: "50px" }}
         >
-          <h2 style={{ marginTop: "10px" }}>Create Blog</h2>
+          <h2 style={{ marginTop: "10px", fontWeight: 600 }}>Create Blog</h2>
           <h6>Put down your thoughts and spread your knowledge...</h6>
           <TextField
             type="text"
@@ -81,13 +80,14 @@ const CreateBlog = () => {
           />
           <Stack direction={"row"}>
             <label htmlFor="image" style={{ fontSize: "20px", marginRight: "15px", fontWeight: 600 }}>
-              Thumbnail: 
+              Thumbnail:* 
             </label>
             <input
               type="file"
               id="image"
               // onChange={(e) => setFileName(e.target.value)}
               onChange={handleImage}
+              required
             ></input>
           </Stack>
           <Button variant="outlined" color="secondary" type="submit" style={{ width: "50%", alignSelf: "center", border: "2px solid black", color: "black" }}>

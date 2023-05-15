@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRouter from "./routes/authRoutes";
 import blogRouter from "./routes/blogRoutes";
+import questionRouter from "./routes/questionRoutes";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/blog', blogRouter);
-
+app.use('/api/question', questionRouter)
 
 const port = process.env.PORT || 5500;
 
