@@ -85,7 +85,7 @@ function Navbar() {
   return (
     <>
       <AlertDismissable />
-      <AppBar position="static" className={styles.navbar_blur} style={{backgroundColor: "pink", color: "black", position: "sticky"}}>
+      <AppBar position="static" className={styles.navbar_blur} style={{backgroundColor: "lightcyan", color: "black", position: "sticky"}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}

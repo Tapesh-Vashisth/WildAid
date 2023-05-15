@@ -38,9 +38,6 @@ function App() {
             <Route path = '' element = {<React.Suspense fallback = {<LazyLoading />}>
               <FrontPage />
             </React.Suspense>} />
-            <Route path = 'createblog' element = {<React.Suspense fallback = {<LazyLoading />}>
-              <CreateBlog />
-            </React.Suspense>} />
             <Route path = 'blogs' element = {<React.Suspense fallback = {<LazyLoading />}>
               <Blogs />
             </React.Suspense>} />
@@ -49,9 +46,6 @@ function App() {
             </React.Suspense>} />
             <Route path = 'questions' element = {<React.Suspense fallback = {<LazyLoading />}>
               <Questions />
-            </React.Suspense>} />
-            <Route path = 'addquestion' element = {<React.Suspense fallback = {<LazyLoading />}>
-              <CreateQuestion />
             </React.Suspense>} />
             <Route path = 'question/:id' element = {<React.Suspense fallback = {<LazyLoading />}>
               <Question />
@@ -66,6 +60,18 @@ function App() {
             </React.Suspense>} />
           </Route>
         </Route>
+
+        <Route path = "/" element = {<Protected />} >
+          <Route path = "" element = {<NavFootLayout />}>
+            <Route path = 'addquestion' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <CreateQuestion />
+            </React.Suspense>} />
+            <Route path = 'createblog' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <CreateBlog />
+            </React.Suspense>} />
+          </Route>
+        </Route>
+        
         
         <Route path = "/auth" element = {<AuthProtected />} >
           <Route path = "login" element = {<React.Suspense fallback = {<LazyLoading />}>
