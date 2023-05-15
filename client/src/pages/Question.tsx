@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import styles from "../styles/blog.module.css";
-import { CircularProgress, TextField } from "@mui/material";
+import { Button, CircularProgress, TextField } from "@mui/material";
 import TagItem from "../components/TagItem";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { useAppSelector } from "../store/hooks";
 
 type commentBlock = {
   author: string;
@@ -25,6 +28,10 @@ type myQuestion = {
 };
 
 const Question = () => {
+  const myUser = useAppSelector((state) => state.user);
+  const author = myUser.name;
+  console.log(myUser);
+
   const initialState = {
     title: "",
     content: "",
@@ -47,24 +54,25 @@ const Question = () => {
   const [question, setQuestion] = useState<myQuestion>(initialState);
   const [isLoading, setLoading] = useState<Boolean>(false);
 
-  const [answer, setAnswer] = useState<string>("")
+  const [answer, setAnswer] = useState<string>("");
 
   const navigate = useNavigate();
 
   const id = useParams().id;
   console.log(id);
 
-  const postAnswer = async () => {
-    const res = await axiosInstance.post('/question/addcomment/' + id);
-
-  }
+  const postComment = async () => {
+    const res = await axiosInstance.put("/question/addcomment/" + id, {
+      author,
+      comment: answer,
+    });
+    console.log(res);
+    window.location.reload();
+  };
 
   const getQuestions = async () => {
-    console.log("hi");
     setLoading(true);
     const res = await axiosInstance.get("/question/getquestion/" + id);
-    console.log("res is : ", res);
-    console.log(res.data);
     setQuestion(res.data);
     if (res.data === null) navigate("/404");
     setLoading(false);
@@ -137,6 +145,60 @@ const Question = () => {
                 {question.content}
                 {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque ipsa enim, maxime dolorum, eum, incidunt a libero cupiditate nemo esse beatae officiis. Aspernatur, corrupti ipsa quam assumenda at minus asperiores facere culpa numquam. Quod dicta iure aliquam quas, aspernatur quae! Distinctio sapiente consequatur sequi? Assumenda dolor soluta veritatis sapiente, molestiae veniam quaerat nihil praesentium consequuntur. Praesentium et eos, quidem nobis quo alias cum expedita aliquam quaerat itaque ea, libero architecto culpa ex doloribus! Sit recusandae laborum numquam placeat quod quaerat voluptatibus accusamus, labore consequatur ipsum reprehenderit quas eligendi, maxime, eos cupiditate harum modi doloribus architecto enim assumenda eveniet! Dolorum a nihil facere velit magni laboriosam atque voluptatum error ad porro numquam ipsum, corporis in molestiae omnis amet nisi ipsa? */}
               </p>
+              {/* <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "none",
+                    color: "blue",
+                  }}
+                >
+                  {" "}
+                  <ThumbUpIcon />{" "}
+                </button>
+                <p style={{ margin: "0" }}> {question.likes} </p>
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "none",
+                    color: "red",
+                  }}
+                >
+                  {" "}
+                  <ThumbDownIcon />{" "}
+                </button>
+              </div> */}
+              <hr style={{ border: "2px solid black" }} />
+              <h3>Comments</h3>
+              <hr />
+              {question.comments.map((item) => {
+                return (
+                  <>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <p style={{ margin: 0 }}> {item.comment} </p>
+                      <p style={{ margin: 0 }}> -by {item.author} </p>
+                    </div>
+                    <hr />
+                  </>
+                );
+              })}
+              <hr style={{ border: "2px solid black" }} />
+              <h3>Post Your Answer</h3>
               <TextField
                 type="text"
                 variant="outlined"
@@ -146,9 +208,24 @@ const Question = () => {
                 multiline
                 rows={4}
                 maxRows={8}
-                required
                 fullWidth
               />
+              <Button
+                variant="outlined"
+                color="secondary"
+                type="button"
+                style={{
+                  width: "50%",
+                  alignSelf: "center",
+                  border: "2px solid lightblue",
+                  color: "white",
+                  backgroundColor: "blue",
+                  marginTop: "5px",
+                }}
+                onClick={postComment}
+              >
+                Post Answer
+              </Button>
             </section>
           </main>
         </>
