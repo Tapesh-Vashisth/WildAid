@@ -24,7 +24,23 @@ input[readonly] {
   cursor: text !important;
 }
 
-/* this is only due to codepen display don't use this outside of codepen */
+.gques {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: lightcyan;
+  border-radius: 10px;
+  border: 2px solid lightblue;
+}
+
+.gques p, h4 {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
 .container {
   padding-top: 20px;
 }

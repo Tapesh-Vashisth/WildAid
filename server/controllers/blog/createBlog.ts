@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import Blog from "../../models/Blog";
 
 const createBlog = async (req: Request, res: Response) => {
-    console.log(req.body)
     const { author, title, content, image } = req.body
     const date = new Date(Date.now())
     const comments: Array<Object> = []

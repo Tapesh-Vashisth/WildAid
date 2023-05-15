@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Josefin+Slab:100,100i,300,300i,400,400i,600,600i,700,700i");
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.container h2 {
+  font-family: "Josefin Slab", serif;
+  align-self: center;
+  font-weight: 600;
+}
+
+.container > a {
+  text-decoration: none;
+  color: none;
+  position: absolute;
+  align-self: flex-end;  
+}
+
+.askques {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: lightgoldenrodyellow;
+  border: 1px solid lightblue;
+  /* margin-bottom: 30px; */
+  /* align-self: flex-end; */
+  /* position: absolute; */
+  cursor: pointer;
+}
+
+.askques:hover {
+  opacity: 0.7;
+}
+
+.load {
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  max-width: 70%;
+  gap: 10px;
+  padding: 10px;
+  border-top: 2px solid black;
+  /* align-items: center; */
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.middle p {
+  margin: 0;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.right p {
+  margin: 0;
+}
+
+.quesTitle {
+  color: blue;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.quesDesc {
+  color: black;
+  font-size: 15px;
+}
+
+.quesTitle:hover {
+  color: rgb(64, 64, 171);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+}
+
+.bottom div {
+  text-align: center;
+}
+
+.bottom p {
+  margin: 0;
+}
+
+@media screen and (max-width: 1150px) {
+  .main {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .main {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    max-width: 95%;
+    place-items: center;
+  }
+
+  .quesTitle {
+    font-size: 15px;
+  }
+
+  .quesDesc {
+    font-size: 12px;
+  }
+
+  .bottom p {
+    font-size: 13px;
+  }
+
+  .middle {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .container > a {
+    position: relative;
+    align-self: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    padding: 10px;
+  }
+
+  .main {
+    max-width: 100%;
+    width: 100%;
+    place-items: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    padding: 5px;
+  }
+
+  .middle {
+    font-size: 11px;
+  }
+}

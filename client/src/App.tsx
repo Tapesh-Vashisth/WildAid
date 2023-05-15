@@ -13,8 +13,11 @@ const SignUp = React.lazy(() => import('./pages/SignUp'));
 const ErrorPage = React.lazy(() => import('./pages/Error404'));
 const FrontPage = React.lazy(() => import('./pages/FrontPage'));
 const CreateBlog = React.lazy(() => import('./pages/CreateBlog'));
+const CreateQuestion = React.lazy(() => import('./pages/CreateQuestion'));
 const Blogs = React.lazy(() => import('./pages/Blogs'));
 const Blog = React.lazy(() => import('./pages/Blog'));
+const Questions = React.lazy(() => import('./pages/Questions'))
+const Question = React.lazy(() => import('./pages/Question'))
 const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword'));
 
 function App() {
@@ -43,6 +46,15 @@ function App() {
             </React.Suspense>} />
             <Route path = 'blog/:id' element = {<React.Suspense fallback = {<LazyLoading />}>
               <Blog />
+            </React.Suspense>} />
+            <Route path = 'questions' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <Questions />
+            </React.Suspense>} />
+            <Route path = 'addquestion' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <CreateQuestion />
+            </React.Suspense>} />
+            <Route path = 'question/:id' element = {<React.Suspense fallback = {<LazyLoading />}>
+              <Question />
             </React.Suspense>} />
           </Route>
         </Route>
